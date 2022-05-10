@@ -38,14 +38,24 @@ namespace Lab008.View.Tabuada
 
         private void TelaTabuada_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == 13)
+            if (e.KeyChar == 13)
             {
-                lbxResultado.Items.Clear();
-                CalcularTabuada();
-            }
-            if(e.KeyChar == 27)
-            {
-                LimparTela();
+                if (string.IsNullOrWhiteSpace(tbxTabuada.Text))
+                {
+                    MessageBox.Show("Digite um número válido.");
+                    tbxTabuada.Focus();
+                    tbxTabuada.SelectAll();
+                    return;
+                }
+                else
+                {
+                    lbxResultado.Items.Clear();
+                    CalcularTabuada();
+                }
+                if (e.KeyChar == 27)
+                {
+                    LimparTela();
+                }
             }
         }
     }
