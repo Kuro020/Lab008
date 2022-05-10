@@ -76,6 +76,7 @@ namespace Lab008.View
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MenuPrincipal";
+            this.Load += new System.EventHandler(this.MenuPrincipal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -28,7 +28,7 @@ namespace Lab008.View.CPF
             }
             string cpfInformado = tbxCpf.Text.Replace(".", "").Replace("-", "");
 
-            lblResultado.Text = cpfInformado;
+          //  lblResultado.Text = cpfInformado;
 
             if(cpfInformado.Length != 11)
             {
@@ -42,7 +42,56 @@ namespace Lab008.View.CPF
             int soma = 0;
             int valorRef = 10;
 
+            for (int i = 0; i <= 8; i++)
+            {
+                soma += Convert.ToInt32(cpf[i].ToString()) * valorRef--;
+            }
+            int dv1 = (int) soma % 11;
 
+            if (dv1 < 2)
+            {
+                dv1 = 0;
+            }
+            else
+            {
+                dv1 = 11 - dv1;
+            }
+
+            if (!cpfInformado.Substring(9, 1).Equals(dv1.ToString()))
+            {
+                lblResultado.Text = "Informe um CPF válido.";
+                lblResultado.ForeColor = Color.Red;
+                return;
+            }
+            cpf = cpf + dv1.ToString();
+            valorRef = 11;
+            soma = 0;
+
+            for (int i = 9; i >= 0; i--)
+            {
+                soma += Convert.ToInt32(cpf[i].ToString()) * valorRef--;
+            }
+            int dv2 = (int)soma % 11;
+
+            if (dv2 < 2)
+            {
+                dv2 = 0;
+            }
+            else
+            {
+                dv2 = 11 - dv2;
+            }
+            cpf = cpf + dv2.ToString();
+
+            if (!cpfInformado.Substring(10, 1).Equals(dv2.ToString()))
+            {
+                lblResultado.Text = "Informe um CPF válido.";
+                lblResultado.ForeColor = Color.Red;
+                return;
+            }
+
+            lblResultado.Text = "CPF Válido";
+            lblResultado.ForeColor = Color.Green;
         }
 
         private void btnCpf_Click(object sender, EventArgs e)

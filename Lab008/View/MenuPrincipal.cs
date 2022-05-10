@@ -29,5 +29,10 @@ namespace Lab008.View
             CPF.lblCpf cpf = new CPF.lblCpf();
             cpf.ShowDialog();
         }
+
+        private void MenuPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
